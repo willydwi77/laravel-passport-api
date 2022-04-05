@@ -19,7 +19,7 @@ composer create-project --prefer-dist laravel/laravel nama_projek
 
 ### Step 2: Configure Database with App
 
-Buka file **.env** dan ubah bagian DB_CONNECTION menjadi sqlite hapus, alternatif agar tidak perlu menjalankan mysql dan buat database di dalamnya.
+Buka file **.env** dan ubah bagian DB_CONNECTION menjadi sqlite, sebagai alternatif agar tidak perlu menjalankan mysql dan buat database di dalamnya.
 
 ```
 DB_CONNECTION=sqlite 
@@ -27,7 +27,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 ```
 
-Buat file **database.sqlite** di dalam folder **database**
+Buat file database berformat sqlite **database\database.sqlite**
 
 ### Step 3: Install Passport Auth
 
@@ -39,14 +39,22 @@ Buka file **config/app.php** dan tambahkan **PassportServiceProvider::class** di
 
 ```php
 'providers' =>[
+
     ...
+
+    /*
+     * Package Service Providers...
+     */
     Laravel\Passport\PassportServiceProvider::class,
+
+    ...
 ],
 ```
 
-Generate kunci enkripsi passport
+Jalankan migrasi lalu generate kunci enkripsi passport
 
 ```s
+php artisan migrate
 php artisan passport:install
 ```
 
@@ -95,7 +103,92 @@ Tambahkan skrip di bawah di file **config/auth.php**
 ],
 ```
 
-### Step 5: Create Product Table and Model
+### Step 5: Create Post Table and Model
+
+Buat Post model dengan file migration
+
+```s
+    php artisan make:model Post -m
+```
+
+Tambahkan field untuk tabel Post
+
+```php
+return new class extends Migration
+{
+
+    public function up()
+    {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('title');
+            $table->longText('body');
+            $table->string('photo');
+            $table->timestamps();
+        });
+    }
+
+    ...
+```
+
+Agar dapat memasukan data ke dalam tabel, ubah **app\Models\Post.php** dan tambahkan skrip di bawah
+
+```php
+protected $fillable = [
+    'title', 'body', 'photo'
+];
+```
+
+Jalankan migrasi untuk menambahkan tabel Post
+```s
+php artisan migrate:fresh
+php artisan passport:install
+```
+
 ### Step 6: Create Auth and CRUD APIs Route
-### Step 7: Create Passport Auth and CRUD Controller
+
+Ubah route di file **routes\web.php**
+
+```php
+Route::get('{any}', function () {
+    return view('welcome');
+})->where('any', '.*');
+```
+
+
+### Step 7: Install Intervention/Image
+
+Instal paket untuk mengolah file berupa Image
+
+```s
+composer require intervention/image
+```
+
+Daftarkan invention/image di 
+
+```php
+Intervention\Image\ImageServiceProvider::class
+```
+
+Buka file **config/app.php** dan tambahkan **Intervention\Image\ImageServiceProvider::class** di providers
+
+```php
+'providers' =>[
+
+    ...
+    
+    /*
+     * Package Service Providers...
+     */
+    Laravel\Passport\PassportServiceProvider::class,
+    Intervention\Image\ImageServiceProvider::class,
+
+    ...
+],
+```
+
+### Step 8: Create Passport Auth and CRUD Controller
+
+
 ### Step 8: Test Laravel 9 REST CRUD API with Passport Auth in Postman
