@@ -44,7 +44,9 @@ Buka file **config/app.php** dan tambahkan **PassportServiceProvider::class** di
 
 Generate kunci enkripsi passport
 
-`php artisan passport:install`
+```s
+php artisan passport:install
+```
 
 ### Step 4: Passport Configuration
 
