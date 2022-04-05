@@ -33,7 +33,7 @@ Buat file **database.sqlite** di dalam folder **database**
 
 Buka file **config/app.php** dan tambahkan **PassportServiceProvider::class** di providers
 
-```
+```php
 'providers' =>[
     ...
     Laravel\Passport\PassportServiceProvider::class,
@@ -48,19 +48,21 @@ Generate kunci enkripsi passport
 
 Tambahkan **HasApiTokens** di model **App/Models/User.php**
 
-    use Laravel\Passport\HasApiTokens;
+```php
 
-    class User extends Authenticatable {
+use Laravel\Passport\HasApiTokens;
 
-        use HasFactory, Notifiable, HasApiTokens;
+class User extends Authenticatable {
 
-        ...
-    }
+    use HasFactory, Notifiable, HasApiTokens;
 
+    ...
+}
+```
 
 Daftarkan passport routes di **App/Providers/AuthServiceProvider.php**
 
-```
+```php
 use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider {
@@ -77,7 +79,7 @@ class AuthServiceProvider extends ServiceProvider {
 
 Tambahkan skrip di bawah di file **config/auth.php**
 
-```
+```php
 'guards' => [
     ..., 
         'api' => [ 
