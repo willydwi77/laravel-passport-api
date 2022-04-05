@@ -96,10 +96,10 @@ Tambahkan skrip di bawah di file **config/auth.php**
 ```php
 'guards' => [
     ..., 
-        'api' => [ 
-            'driver' => 'passport', 
-            'provider' => 'users', 
-        ],
+    'api' => [ 
+        'driver' => 'passport', 
+        'provider' => 'users', 
+    ],
 ],
 ```
 
