@@ -31,7 +31,9 @@ Buat file **database.sqlite** di dalam folder **database**
 
 ### Step 3: Install Passport Auth
 
-`composer require laravel/passport`
+```s
+composer require laravel/passport
+```
 
 Buka file **config/app.php** dan tambahkan **PassportServiceProvider::class** di providers
 
