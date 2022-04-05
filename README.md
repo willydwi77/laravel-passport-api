@@ -48,16 +48,15 @@ Generate kunci enkripsi passport
 
 Tambahkan **HasApiTokens** di model **App/Models/User.php**
 
-```
-use Laravel\Passport\HasApiTokens;
+    use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable {
+    class User extends Authenticatable {
 
-    use HasFactory, Notifiable, HasApiTokens;
+        use HasFactory, Notifiable, HasApiTokens;
 
-    ...
-}
-```
+        ...
+    }
+
 
 Daftarkan passport routes di **App/Providers/AuthServiceProvider.php**
 
@@ -80,12 +79,12 @@ Tambahkan skrip di bawah di file **config/auth.php**
 
 ```
 'guards' => [
-        ..., 
-         'api' => [ 
-             'driver' => 'passport', 
-             'provider' => 'users', 
-         ],
-    ],
+    ..., 
+        'api' => [ 
+            'driver' => 'passport', 
+            'provider' => 'users', 
+        ],
+],
 ```
 
 ### Step 5: Create Product Table and Model
