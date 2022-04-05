@@ -13,7 +13,9 @@ Konfigurasi dasar saat menggunakan passport
 
 ### Step 1: Download Laravel 9 App
 
-`composer create-project --prefer-dist laravel/laravel nama_projek`
+```s
+composer create-project --prefer-dist laravel/laravel nama_projek
+```
 
 ### Step 2: Configure Database with App
 
