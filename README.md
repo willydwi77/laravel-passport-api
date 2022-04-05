@@ -108,7 +108,7 @@ Tambahkan skrip di bawah di file **config/auth.php**
 Buat Post model dengan file migration
 
 ```s
-    php artisan make:model Post -m
+php artisan make:model Post -m
 ```
 
 Tambahkan field untuk tabel Post
