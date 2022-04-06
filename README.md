@@ -154,12 +154,6 @@ Instal paket untuk mengolah file berupa Image
 composer require intervention/image
 ```
 
-Daftarkan invention/image di 
-
-```php
-Intervention\Image\ImageServiceProvider::class
-```
-
 Buka file **config/app.php** dan tambahkan **Intervention\Image\ImageServiceProvider::class** di providers
 
 ```php
