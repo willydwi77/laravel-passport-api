@@ -7,9 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Laravel 9 Rest API CRUD Example Tutorial
-
-Konfigurasi dasar saat menggunakan passport
+# Laravel 9 Rest API CRUD with Passport Example Tutorial
 
 ### Step 1: Download Laravel 9 App
 
@@ -28,6 +26,8 @@ DB_PORT=3306
 ```
 
 Buat file database **database.sqlite** di folder **database/**
+
+## Konfigurasi dasar menggunakan Passport
 
 ### Step 3: Install Passport Auth
 
