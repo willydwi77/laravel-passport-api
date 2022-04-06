@@ -60,7 +60,7 @@ php artisan passport:install
 
 ### Step 4: Passport Configuration
 
-Tambahkan **HasApiTokens** di model **App/Models/User.php**
+Tambahkan **HasApiTokens** di model **App/Models/User.php**, 
 
 ```php
 use Laravel\Passport\HasApiTokens;
@@ -70,8 +70,21 @@ class User extends Authenticatable {
     use HasFactory, Notifiable, HasApiTokens;
 
     ...
-}
+
 ```
+
+Masih di file **App/Models/User.php** sebagai tambahan karena CRUD disini menggunakan relasi hasMany dari User ke Post maka tambahkan skrip di bawah
+
+```php
+    ...
+
+    // Relationship hasMany: dengan Model Post 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+}
 
 Daftarkan passport routes di **App/Providers/AuthServiceProvider.php**
 
