@@ -85,6 +85,7 @@ Masih di file **App/Models/User.php** sebagai tambahan karena CRUD disini menggu
     }
 
 }
+```
 
 Daftarkan passport routes di **App/Providers/AuthServiceProvider.php**
 
