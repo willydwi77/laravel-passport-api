@@ -146,18 +146,7 @@ php artisan migrate:fresh
 php artisan passport:install
 ```
 
-### Step 6: Create Auth and CRUD APIs Route
-
-Ubah route di file **routes\web.php**
-
-```php
-Route::get('{any}', function () {
-    return view('welcome');
-})->where('any', '.*');
-```
-
-
-### Step 7: Install Intervention/Image
+### Step 6: Install Intervention/Image
 
 Instal paket untuk mengolah file berupa Image
 
@@ -188,7 +177,103 @@ Buka file **config/app.php** dan tambahkan **Intervention\Image\ImageServiceProv
 ],
 ```
 
-### Step 8: Create Passport Auth and CRUD Controller
+### Step 7: Create Passport Auth and CRUD Controller
 
+Buka file **app\Http\Controllers\Controller.php** buat fungsi sendResponse dan sendError, untuk kode lihat di sumber
 
-### Step 8: Test Laravel 9 REST CRUD API with Passport Auth in Postman
+```php
+use Illuminate\Http\Response; // tambahkan librari Response
+
+class Controller extends BaseController
+{
+    ... 
+
+    public function sendResponse($result = "", $message = "")
+    {
+        // TODO: Success Response
+    }
+
+    public function sendError($error = "", $errorMessages = "", $code = Response::HTTP_BAD_REQUEST)
+    {
+        // TODO: Error Response
+    }
+}
+```
+
+Buat controller baru dengan perintah
+
+```s
+php artisan make:controller Api\AuthController
+php artisan make:controller Api\PostController --resource
+```
+
+Buka file **app\Http\Controllers\Api\AuthController.php** buat fungsi login dan register, untuk kode lihat di sumber
+
+```php
+class AuthController extends Controller
+{
+    public function login(Request $request)
+    {
+        // TODO:
+    }
+
+    public function register(Request $request)
+    {
+        // TODO:
+    }
+}
+```
+
+Buka file **app\Http\Controllers\Api\PostController.php** hapus fungsi create dan edit karena tidak diperlukan untuk sumber API, untuk kode lihat di sumber
+
+```php
+class PostController extends Controller
+{
+    public function index()
+    {
+        // TODO: Get Posts
+    }
+    
+    public function store(Request $request)
+    {
+        // TODO: Store Post
+    }
+    
+    public function show($id)
+    {
+        // TODO: Show Post by {id}
+    }
+    
+    public function update(Request $request, $id)
+    {
+        // TODO: Edit Post by {id}
+    }
+    
+    public function destroy($id)
+    {
+        // TODO: Delete Post by {id}
+    }
+}
+```
+
+### Step 8: Create Auth and CRUD APIs Route
+
+Ubah route di file **routes\web.php**
+
+```php
+Route::get('{any}', function () {
+    return view('welcome');
+})->where('any', '.*');
+```
+
+Lanjut tambahkan route baru di file **routes\api.php**
+
+```php
+Route::middleware('auth:api')->group(function () {
+    Route::get('user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::resource('post', PostController::class)->except(['create', 'edit']);
+});
+```
