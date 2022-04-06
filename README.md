@@ -63,7 +63,6 @@ php artisan passport:install
 Tambahkan **HasApiTokens** di model **App/Models/User.php**
 
 ```php
-
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable {
