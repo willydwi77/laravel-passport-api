@@ -27,7 +27,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 ```
 
-Buat file database berformat sqlite **database\database.sqlite**
+Buat file database **database.sqlite** di folder **database/**
 
 ### Step 3: Install Passport Auth
 
@@ -208,12 +208,12 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        // TODO:
+        // TODO: Login
     }
 
     public function register(Request $request)
     {
-        // TODO:
+        // TODO: Register
     }
 }
 ```
@@ -270,4 +270,12 @@ Route::middleware('auth:api')->group(function () {
 
     Route::resource('post', PostController::class)->except(['create', 'edit']);
 });
+```
+
+### Step 9: Run Project and Test API with Postman
+
+Jalankan server laravel, akses url http://127.0.0.1:8000/api di Postman
+
+```s
+php artisan serve
 ```
